@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 防止ios 识别数字为电话号码 -->
+    <meta name="format-detection" content="telephone=no"/>
+    <meta http-equiv="Content-Security-Policy"/>
+    <title>冷链平台</title>
+    <link rel="stylesheet" href="lib/framework7/framework7.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="cordova.js"></script>
+    <script type="text/javascript" src="lib/avalon.mobile.min.js"></script>
+    <script>avalon.config({loader: false})</script>
+</head>
+
+
+<body>
+<div class="views">
+    <!-- home 首页 -->
+    <div id="homeView" class="view view-main">
+        <div class="pages">
+            <div data-page="ble" class="page" ms-controller="homeCtl">
+                <div class="page-content">
+                    <div class="content-block-title" style="margin: 15px 10px;">已录入{{length}}个设备</div>
+                    <!-- <div class="content-block-title">蓝牙设备搜索中</div> -->
+                    <div class="list-block details-list list-block-search searchbar-found" style="margin: 20px 0;">
+                        <ul ms-if="data.length">
+                            <li ms-repeat="data">
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title"><b class="J_name">{{el.name}}</b><span
+                                                ms-if="F7.device.android">({{el.id}})</span></div>
+                                        <div class="item-after">
+                                            <a class="button color-blue" ms-if="el.rssi">设备录入成功</a>
+                                            <a class="button color-blue" ms-if="!el.rssi">设备早已录入</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tc" ms-if="show"><i class="preloader"></i></div>
+                    <div class="p10">
+                        <a href="#" class="button" ms-click="scan">{{buttonText}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /home -->
+</div>
+
+<script src="lib/framework7/framework7.js"></script>
+<script type="text/javascript" src="lib/protobuf/Long.min.js"></script>
+<script type="text/javascript" src="lib/protobuf/ByteBufferAB.min.js"></script>
+<script type="text/javascript" src="lib/protobuf/ProtoBuf.min.js"></script>
+<script src="lib/md5.min.js"></script>
+<script src="lib/base64.min.js"></script>
+<script src="lib/sha1.min.js"></script>
+<script src="lib/dx-sdk.js"></script>
+<script src="lib/str-to-gbk.js"></script>
+<script src="js/lib.js"></script>
+<script src="js/service.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
